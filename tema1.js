@@ -1,4 +1,4 @@
-class AnagajatIT {
+class AngajatIT {
     constructor(cnp, nume, prenume, vechime, departament) {
         this.cnp = cnp;
         this.nume = nume;
@@ -9,10 +9,21 @@ class AnagajatIT {
 
     afiseazaVarsta() {
         let varsta;
+        const currentDate = new Date()
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        console.log("Day: ", currentDay);
         if (this.cnp[0] == "1" || this.cnp[0] == "2") {
-            varsta = 2021 - (1900 + parseInt(this.cnp[1] + this.cnp[2]));
+            varsta = currentYear - (1900 + parseInt(this.cnp[1] + this.cnp[2]));
         } else {
-            varsta = 2021 - (2000 + parseInt(this.cnp[1] + this.cnp[2]));
+            varsta = currentYear - 2021 - (2000 + parseInt(this.cnp[1] + this.cnp[2]));
+        }
+        if (currentMonth < parseInt(this.cnp[3] + this.cnp[4])) {
+            varsta--;
+        } else if (currentMonth == parseInt(this.cnp[3] + this.cnp[4])
+            && currentDay < parseInt(this.cnp[5] + this.cnp[6])) {
+            varsta--;
         }
         console.log(this.prenume + " " + this.nume + " are " + varsta + " de ani");
     }
@@ -27,7 +38,7 @@ class AnagajatIT {
 }
 
 
-class QA extends AnagajatIT {
+class QA extends AngajatIT {
     constructor(cnp, nume, prenume, vechime, departament) {
         super(cnp, nume, prenume, vechime, departament);
     }
@@ -38,7 +49,7 @@ class QA extends AnagajatIT {
 }
 
 
-class Developer extends AnagajatIT {
+class Developer extends AngajatIT {
     constructor(cnp, nume, prenume, vechime, departament) {
         super(cnp, nume, prenume, vechime, departament);
     }
@@ -54,13 +65,14 @@ async function getRandomPerson() {
     const URL = "https://randomuser.me/api/";
     const result = await fetch(URL);
     const data = await result.json();
-    document.getElementById('person-img').setAttribute('src', data.results[0].picture.medium);
-    console.log("Name: " + data.results[0].name.first + " " + data.results[0].name.last);
-    console.log("Gender: " + data.results[0].gender);
-    console.log("E-mail: " + data.results[0].email);
-    console.log("Age: " + data.results[0].dob.age);
+    const person = data.results[0];
+    document.getElementById('person-img').setAttribute('src', person.picture.medium);
+    document.getElementById('person-first-name').innerHTML = 'First name: ' + person.name.first;
+    document.getElementById('person-last-name').innerHTML = 'Last name: ' + person.name.last;
+    document.getElementById('person-gender').innerHTML = 'Gender: ' + person.gender;
+    document.getElementById('person-email').innerHTML = 'E-mail: ' + person.email;
+    document.getElementById('person-age').innerHTML = 'Age: ' + person.dob.age;
 }
-
 
 document.getElementById("fetch-person-button").addEventListener('click', getRandomPerson);
 
@@ -73,10 +85,11 @@ for (let i = 0; i < array.length; i++) {
     console.log(array[i] + array[i] * 15);
 }
 
-array.forEach(x => console.log(x + x * 15)); //Nu stiu daca la asta se refera 'arrow functions și iteratori specifici ES6'
+array.forEach(x => console.log(x + x * 15));
+array.map(x => console.log(x + x * 15));
 
-const [...rest] = array;
-rest[2] = 22;
-rest[6] = 66;
+
+let [...rest] = array;
+rest = rest.map(x => x == 2 || x == 6 ? x *= 11 : x = x);
 console.log(array);
 console.log(rest);
