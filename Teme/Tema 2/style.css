@@ -1,0 +1,42 @@
+.progress-bar-outline {
+    width: 1000px;
+    height: 10px;
+    margin: auto;
+    border: 3px solid black;
+}
+
+.progress-bar {
+    position: relative;
+    width: 1000px;
+    height: 10px;
+    background-color: lightseagreen;
+    animation-name: animate-progress-bar;
+    animation-duration: 5s;
+}
+
+
+@keyframes animate-progress-bar {
+    from {width: 0px;}
+    to {width: 1000px;}
+}
+
+#timer-container {
+    margin-top: 50px;
+    width: 500px;
+}
+
+#timer {
+    border: 10px solid black;
+    width: 400px;
+    height: 120px;
+    background-color: lightgrey;
+    text-align: center;
+    font-size: 100px;;
+}
+
+.timer-button {
+    width: 137px;
+    height: 50px;;
+    vertical-align: top;
+    margin-top: 5px;;
+}
