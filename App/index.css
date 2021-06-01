@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -45,11 +45,15 @@
 }
 
 @keyframes animate-cell {
-    from {transform: scale(1);}
-    to {transform: scale(1.4);}
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.4);
+    }
 }
 
-.grid-play-button, .grid-reset-button{
+.grid-play-button, .grid-reset-button {
     width: 35px;
     border: 1px solid;
     padding: 5px;
@@ -62,14 +66,58 @@
     background-color: lightgreen;
 }
 
-#video-input{
+#video-input {
     display: none;
 }
 
-#canvas-output{
+#canvas-output {
     position: absolute;
     top: 20px;
     left: 20px;
     border: 1px solid black;
     z-index: 1;
+}
+
+.gesture-classifier-button {
+    border: 1px dashed;
+    width: 100px;
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+#gesture-0 {
+    border-color: red;
+}
+
+#gesture-1 {
+    border-color: green;
+}
+
+#gesture-2 {
+    border-color: blue;
+}
+
+.gesture-classifier-button.training {
+    border: 1px solid;
+}
+
+.gesture-classifier-button.predicted {
+    background-color: lightpink;
+}
+
+.gesture-cell {
+    width: 20px;
+}
+
+.gesture-0 {
+    background-color: red;
+}
+
+.gesture-1 {
+    background-color: green;
+}
+
+.gesture-2 {
+    background-color: blue;
 }
