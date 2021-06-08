@@ -1,0 +1,31 @@
+#question-container {
+    width: 500px;
+    height: 75px;
+    margin: auto;
+    border: 2px black solid;
+    background-color: lightskyblue;
+}
+
+#question {
+    text-align: center;
+    font-size: 25px;
+    height: 35px;
+}
+
+.answer {
+    border: 1px grey solid;
+    display: inline-block;
+    width: calc(97% / 3);
+    height: 38px;
+    background-color: lightgray;
+    text-align: center;
+    font-size: 20px;
+}
+
+.answer:hover {
+    background-color: darkgray;
+}
+
+.disabled {
+    pointer-events: none;
+}
